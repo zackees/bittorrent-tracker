@@ -133,6 +133,7 @@ class Server extends EventEmitter {
       this.ws.on('connection', (socket, req) => {
         // Note: socket.upgradeReq was removed in ws@3.0.0, so re-add it.
         // https://github.com/websockets/ws/pull/1099
+        debug('ws upgrade request', req, 'to socket', socket)
         socket.upgradeReq = req
         this.onWebSocketConnection(socket)
       })
@@ -618,7 +619,7 @@ class Server extends EventEmitter {
   }
 
   _onWebSocketError (socket, err) {
-    debug('websocket error %s', err.message || err)
+    console.log('websocket error %s', err.message || err)
     this.emit('warning', err)
     this._onWebSocketClose(socket)
   }
