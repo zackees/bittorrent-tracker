@@ -118,6 +118,7 @@ class Server extends EventEmitter {
         server: noServer ? undefined : this.http,
         perMessageDeflate: false,
         clientTracking: false,
+        autoAcceptConnections: true,
         ...(isObject(opts.ws) ? opts.ws : undefined)
       })
 
